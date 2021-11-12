@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="Style.css">
+  <title>IMC</title>
+
+</head>
+<div>
+  <h2>IMC CALCULATOR</h2>
+</div>
+
+<body>
+  <main>
+    <form>
+      <div>
+        <h5>NOME</h5>
+        <input id="nome" type="text" name='name' placeholder="Digite seu nome...">
+      </div>
+      <div>
+        <h5>IDADE</h5>
+        <input id="idade" type="number" name="idade" placeholder="Digite sua idade...">
+      </div>
+      <div>
+        <h5>PESO</h5>
+        <input id="peso" type="number" name="peso" placeholder="Digite seu peso...">
+
+      </div>
+      <div>
+        <h5>ALTURA</h5>
+        <input id="altura" type="number" name="altura" placeholder="Digite sua altura...">
+      </div>
+      <div>
+        <div class='button' id='calcular' onclick="imc()">Calcular</div>
+      </div>
+      <div class="result" id='resultado'></div>
+      </div>
+    </form>
+  </main>
+</body>
+<script>
+  //realça a borda quando cilca dentro da caixinha
+  var nome = document.getElementById('nome')
+  nome.addEventListener('focus', () => {
+    nome.style.borderColor = 'rgb(16, 139, 139)';
+  });
+  // volta ao normal quando clica fora
+  nome.addEventListener('blur', () => {
+    nome.style.borderColor = 'white'
+  });
+  var idade = document.getElementById('idade')
+  idade.addEventListener('focus', () => {
+    idade.style.borderColor = 'rgb(16, 139, 139)';
+  });
+
+  idade.addEventListener('blur', () => {
+    idade.style.borderColor = 'white'
+  });
+
+  var peso = document.getElementById('peso')
+  peso.addEventListener('focus', () => {
+    peso.style.borderColor = 'rgb(16, 139, 139)';
+  });
+  var altura = document.getElementById('altura')
+  altura.addEventListener('focus', () => {
+    altura.style.borderColor = 'rgb(16, 139, 139)';
+  });
+  altura.addEventListener('blur', () => {
+    altura.style.borderColor = 'white'
+  });
+  peso.addEventListener('blur', () => {
+    peso.style.borderColor = 'white'
+  });
+
+
+  // fazer interecao com com o HTML, pelo ID
+  var calcular = document.getElementById('calcular')
+
+  
+  function imc() {
+
+    nome = document.getElementById('nome').value
+    idade = document.getElementById('idade').value
+    peso = document.getElementById('peso').value
+    altura = document.getElementById('altura').value
+
+    var resultado = document.getElementById("resultado")
+
+    //funcao para vaalidacao de dados
+    if (nome !== '' && idade !== '' && peso !== '' && altura !== '') {
+
+    //formula para calcular IMC
+      var valorIMC = (peso / (altura * altura)).toFixed(2);//.toFixed(), fixa quantas casas apos a ","
+      document.getElementById("resultado").innerHTML = valorIMC//retorna o elemento atribuido no ID, e seu valor
+      console.log(valorIMC)
+    // condições escolhidas para os  devidos resultados do IMC
+    } else {
+      resultado.textContent = 'Preencha todos os campos...'
+    }
+    if (valorIMC < 18) {
+      document.getElementById("resultado").innerHTML = `${nome},  seu IMC é: ${valorIMC}% e voce está abaixo do peso`
+    }
+    else if (valorIMC >= 25){
+      document.getElementById("resultado").innerHTML = `${nome}, seu IMC é: ${valorIMC}% e voce está no peso ideal`
+    }
+    else if (valorIMC >= 30) {
+      document.getElementById("resultado").innerHTML = `${nome},  seu IMC é: ${valorIMC}% e voce está acima do peso, CUIDADO!`
+    }
+    else if (valorIMC >= 35) {
+      document.getElementById("resultado").innerHTML = `${nome}, seu IMC é: ${valorIMC}% e voce está OBESO, procure ajuda o mais rapido possivel!`
+
+    }
+
+  }
+
+  // calcular.addEventListener('click', imc)
+
+
+
+</script>
+
+</html>
